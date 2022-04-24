@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 def preprocessing(df,method_remove="mean_std",norm_std="norm"):
     X_num = df.select_dtypes("number")
     if method_remove == "mean_std":

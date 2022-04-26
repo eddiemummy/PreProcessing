@@ -12,6 +12,7 @@ def preprocessing(df,method_remove="mean_std",norm_std="norm"):
         max_ = q3+1.5*iqr
         df = df[~((X_num > max_)|(X_num < min_)).any(axis=1)]
     elif method_remove == "z_score":
+        import numpy as np
         import scipy.stats as sts
         z = np.abs(sts.zscore(X_num))
         df = df[~(X_num < z).all(axis=1)]

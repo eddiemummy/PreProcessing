@@ -1,5 +1,5 @@
 def preprocessing(df,method_remove="mean_std",norm_std="norm"):
-    X_num = df.select_dtypes("number")
+    X_num = df._get_numeric_data()
     if method_remove == "mean_std":
         min_val = X_num.mean() - 3*X_num.std()
         max_val = X_num.mean() + 3*X_num.std()
@@ -24,7 +24,7 @@ def preprocessing(df,method_remove="mean_std",norm_std="norm"):
         df = (df-df.mean())/(df.std())
     
     import plotly.express as px
-    featured = df.select_dtypes("number").columns.tolist()
+    featured = df._get_numeric_data().columns.tolist()
     fig = px.box(df,y=featured)    
     
     return df,fig
